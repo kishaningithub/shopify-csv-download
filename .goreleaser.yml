@@ -1,0 +1,21 @@
+project_name: shopify-csv-download
+
+release:
+  github:
+    owner: kishaningithub
+    name: shopify-csv-download
+
+before:
+  hooks:
+  - go mod download
+
+builds:
+- main: ./main.go
+  binary: shopify-csv-download
+  goos:
+  - windows
+  - darwin
+  - linux
+  goarch:
+  - amd64
+  - 386

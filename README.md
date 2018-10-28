@@ -17,11 +17,17 @@ Download a shopify site in a csv format that the shopify importer understands
 ## Install
 
 ```bash
+# binary will be downloaded to /usr/local/bin
+curl -sfL https://raw.githubusercontent.com/kishaningithub/shopify-csv-download/master/install.sh | sudo sh -s -- -b /usr/local/bin
+
+# In alpine linux (as it does not come with curl by default)
+wget -O - -q https://raw.githubusercontent.com/kishaningithub/shopify-csv-download/master/install.sh | sudo sh -s -- -b /usr/local/bin
 ```
 
 ## Usage
 
 ```bash
+shopify-csv-download https://shopify-site.com > shopify-site-products.csv
 ```
 
 ## Maintainers

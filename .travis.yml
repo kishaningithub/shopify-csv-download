@@ -1,0 +1,11 @@
+sudo: false
+language: go
+go:
+- 1.11.x
+install:
+- GO111MODULE=on go mod download
+script:
+- GO111MODULE=on go test -v ./...
+after_success:
+- export GO111MODULE=on
+- test -n "$TRAVIS_TAG" && curl -sL https://git.io/goreleaser | bash
