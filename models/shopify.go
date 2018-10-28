@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// Variant represents a shopify variant
 type Variant struct {
 	ID               int64     `json:"id"`
 	Title            string    `json:"title"`
@@ -26,6 +27,7 @@ type Variant struct {
 	UpdatedAt        time.Time `json:"updated_at"`
 }
 
+// Image represents a shopify image
 type Image struct {
 	ID         int64     `json:"id"`
 	CreatedAt  time.Time `json:"created_at"`
@@ -38,12 +40,14 @@ type Image struct {
 	Height     int       `json:"height"`
 }
 
+// Option represents a shopify option
 type Option struct {
 	Name     string   `json:"name"`
 	Position int      `json:"position"`
 	Values   []string `json:"values"`
 }
 
+// Product represents a shopify product
 type Product struct {
 	ID          int64     `json:"id"`
 	Title       string    `json:"title"`
