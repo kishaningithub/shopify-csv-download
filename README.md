@@ -1,23 +1,21 @@
 # shopify csv download
 
-[![Build Status](https://travis-ci.org/kishaningithub/shopify-site-products.svg?branch=master)](https://travis-ci.org/kishaningithub/shopify-site-products)
-[![Go Doc](https://godoc.org/github.com/kishaningithub/shopify-site-products?status.svg)](https://godoc.org/github.com/kishaningithub/shopify-site-products)
-[![Go Report Card](https://goreportcard.com/badge/github.com/kishaningithub/shopify-site-products)](https://goreportcard.com/report/github.com/kishaningithub/shopify-site-products)
+[![Build Status](https://travis-ci.org/kishaningithub/shopify-csv-download.svg?branch=master)](https://travis-ci.org/kishaningithub/shopify-csv-download)
+[![Go Doc](https://godoc.org/github.com/kishaningithub/shopify-csv-download?status.svg)](https://godoc.org/github.com/kishaningithub/shopify-csv-download)
+[![Go Report Card](https://goreportcard.com/badge/github.com/kishaningithub/shopify-csv-download)](https://goreportcard.com/report/github.com/kishaningithub/shopify-csv-download)
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-[![Downloads](https://img.shields.io/github/downloads/kishaningithub/shopify-site-products/latest/total.svg)](https://github.com/kishaningithub/shopify-site-products/releases)
-[![Latest release](https://img.shields.io/github/release/kishaningithub/shopify-site-products.svg)](https://github.com/kishaningithub/shopify-site-products/releases)
+[![Downloads](https://img.shields.io/github/downloads/kishaningithub/shopify-csv-download/latest/total.svg)](https://github.com/kishaningithub/shopify-csv-download/releases)
+[![Latest release](https://img.shields.io/github/release/kishaningithub/shopify-csv-download.svg)](https://github.com/kishaningithub/shopify-csv-download/releases)
 
 Download a shopify site in a csv format that the shopify importer understands
 
 ## Table of Contents
 
-- [shopify csv download](#shopify-csv-download)
-    - [Table of Contents](#table-of-contents)
-    - [Install](#install)
-    - [Usage](#usage)
-    - [Maintainers](#maintainers)
-    - [Contribute](#contribute)
-    - [License](#license)
+- [Install](#install)
+- [Usage](#usage)
+- [Maintainers](#maintainers)
+- [Contribute](#contribute)
+- [License](#license)
 
 ## Install
 
