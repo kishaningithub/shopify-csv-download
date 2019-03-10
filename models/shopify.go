@@ -127,7 +127,7 @@ func (product Product) ToImportableCSV() [][]string {
 			imageSrc, imagePosition, imageAltText, giftCard, googleShoppingMPN, googleShoppingAgeGroup, googleShoppingGender,
 			googleShoppingGoogleProductCategory, seoTitle, seoDescription, googleShoppingAdWordsGrouping, googleShoppingAdWordsLabels,
 			googleShoppingCondition, googleShoppingCustomProduct, googleShoppingCustomLabel0, googleShoppingCustomLabel1,
-			googleShoppingCustomLabel2, googleShoppingCustomLabel3, googleShoppingCustomLabel4, variantImage, variantWeightUnit
+			googleShoppingCustomLabel2, googleShoppingCustomLabel3, googleShoppingCustomLabel4, variantImage, variantWeightUnit,
 		}
 
 		csvRows = append(csvRows, content)
