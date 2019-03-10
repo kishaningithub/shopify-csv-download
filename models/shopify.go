@@ -73,8 +73,11 @@ func (product Product) ToImportableCSV() [][]string {
 	var csvRows [][]string
 	for _, variant := range product.Variants {
 		published := strconv.FormatBool(true)
-		variantInventoryTracker := ""
-		variantInventoryQuantity := "1"
+		variantInventoryTracker := "shopify"
+		variantInventoryQuantity := "0"
+		if variant.Available {
+			variantInventoryQuantity = "1"
+		}
 		variantInventoryPolicy := "deny"
 		variantFulfilmentService := "manual"
 		variantBarCode := ""
