@@ -80,7 +80,13 @@ func (product Product) ToImportableCSV() [][]string {
 		variantBarCode := ""
 		imageAltText := ""
 		giftCard := strconv.FormatBool(false)
-		content := []string{product.Handle, product.Title, product.BodyHTML, product.Vendor, product.ProductType, strings.Join(product.Tags, ","), published, variant.Option1, variant.Option1, variant.Option2, variant.Option2, variant.Option3, variant.Option3, variant.Sku, strconv.Itoa(variant.Grams), variantInventoryTracker, variantInventoryQuantity, variantInventoryPolicy, variantFulfilmentService, variant.Price, variant.CompareAtPrice, strconv.FormatBool(variant.RequiresShipping), strconv.FormatBool(variant.Taxable), variantBarCode, product.Images[0].Src, strconv.Itoa(product.Images[0].Position), imageAltText, giftCard}
+		imageSrc := ""
+		imagePosition := ""
+		if len(product.Images) > 0 {
+			imageSrc = product.Images[0].Src
+			imagePosition = strconv.Itoa(product.Images[0].Position)
+		}
+		content := []string{product.Handle, product.Title, product.BodyHTML, product.Vendor, product.ProductType, strings.Join(product.Tags, ","), published, variant.Option1, variant.Option1, variant.Option2, variant.Option2, variant.Option3, variant.Option3, variant.Sku, strconv.Itoa(variant.Grams), variantInventoryTracker, variantInventoryQuantity, variantInventoryPolicy, variantFulfilmentService, variant.Price, variant.CompareAtPrice, strconv.FormatBool(variant.RequiresShipping), strconv.FormatBool(variant.Taxable), variantBarCode, imageSrc, imagePosition, imageAltText, giftCard}
 		csvRows = append(csvRows, content)
 	}
 	return csvRows
