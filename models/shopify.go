@@ -100,7 +100,36 @@ func (product Product) ToImportableCSV() [][]string {
 			imageSrc = product.Images[0].Src
 			imagePosition = strconv.Itoa(product.Images[0].Position)
 		}
-		content := []string{product.Handle, product.Title, product.BodyHTML, product.Vendor, product.ProductType, strings.Join(product.GetTags(), ","), published, variant.Option1, variant.Option1, variant.Option2, variant.Option2, variant.Option3, variant.Option3, variant.Sku, strconv.Itoa(variant.Grams), variantInventoryTracker, variantInventoryQuantity, variantInventoryPolicy, variantFulfilmentService, variant.Price, variant.CompareAtPrice, strconv.FormatBool(variant.RequiresShipping), strconv.FormatBool(variant.Taxable), variantBarCode, imageSrc, imagePosition, imageAltText, giftCard}
+		googleShoppingMPN := ""
+		googleShoppingAgeGroup := ""
+		googleShoppingGender := ""
+		googleShoppingGoogleProductCategory := ""
+		seoTitle := ""
+		seoDescription := ""
+		googleShoppingAdWordsGrouping := ""
+		googleShoppingAdWordsLabels := ""
+		googleShoppingCondition := ""
+		googleShoppingCustomProduct := ""
+		googleShoppingCustomLabel0 := ""
+		googleShoppingCustomLabel1 := ""
+		googleShoppingCustomLabel2 := ""
+		googleShoppingCustomLabel3 := ""
+		googleShoppingCustomLabel4 := ""
+		variantImage := ""
+		variantWeightUnit := ""
+
+		content := []string{
+			product.Handle, product.Title, product.BodyHTML, product.Vendor, product.ProductType,
+			strings.Join(product.GetTags(), ","), published, variant.Option1, variant.Option1, variant.Option2,
+			variant.Option2, variant.Option3, variant.Option3, variant.Sku, strconv.Itoa(variant.Grams),
+			variantInventoryTracker, variantInventoryQuantity, variantInventoryPolicy, variantFulfilmentService, variant.Price,
+			variant.CompareAtPrice, strconv.FormatBool(variant.RequiresShipping), strconv.FormatBool(variant.Taxable), variantBarCode,
+			imageSrc, imagePosition, imageAltText, giftCard, googleShoppingMPN, googleShoppingAgeGroup, googleShoppingGender,
+			googleShoppingGoogleProductCategory, seoTitle, seoDescription, googleShoppingAdWordsGrouping, googleShoppingAdWordsLabels,
+			googleShoppingCondition, googleShoppingCustomProduct, googleShoppingCustomLabel0, googleShoppingCustomLabel1,
+			googleShoppingCustomLabel2, googleShoppingCustomLabel3, googleShoppingCustomLabel4, variantImage, variantWeightUnit
+		}
+
 		csvRows = append(csvRows, content)
 	}
 	return csvRows
