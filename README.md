@@ -42,8 +42,16 @@ wget -O - -q https://raw.githubusercontent.com/kishaningithub/shopify-csv-downlo
 
 ## Usage
 
+Accessing publicly exposed products
+
 ```bash
 shopify-csv-download https://shopify-site.com > shopify-site-products.csv
+```
+
+Private products using API Key
+
+```bash
+shopify-csv-download --full-url https://{{api_key}}:{{api_password}}@{{store_name}}.myshopify.com/admin/products.json > shopify-site-products.csv
 ```
 
 ## Maintainers
