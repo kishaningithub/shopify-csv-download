@@ -11,16 +11,29 @@ Download a shopify site in a csv format that the shopify importer understands
 
 ## Table of Contents
 
-- [Install](#install)
-- [Usage](#usage)
-- [Maintainers](#maintainers)
-- [Contribute](#contribute)
-- [License](#license)
+- [shopify csv download](#shopify-csv-download)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+    - [Using Homebrew](#using-homebrew)
+    - [Using Binary](#using-binary)
+  - [Usage](#usage)
+  - [Maintainers](#maintainers)
+  - [Contribute](#contribute)
+  - [License](#license)
 
 ## Install
 
+### Using Homebrew
+
 ```bash
-# binary will be downloaded to /usr/local/bin
+brew tap kishaningithub/tap
+brew install shopify-csv-download
+```
+
+### Using Binary
+
+```bash
+# All unix environments with curl
 curl -sfL https://raw.githubusercontent.com/kishaningithub/shopify-csv-download/master/install.sh | sudo sh -s -- -b /usr/local/bin
 
 # In alpine linux (as it does not come with curl by default)

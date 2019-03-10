@@ -19,3 +19,13 @@ builds:
   goarch:
   - amd64
   - 386
+
+brew:
+  name: shopify-csv-download
+  github:
+    owner: kishaningithub
+    name: homebrew-tap
+  url_template: "https://github.com/kishaningithub/shopify-csv-download/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+  folder: Formula
+  homepage: "https://github.com/kishaningithub/shopify-csv-download"
+  description: "Download a shopify site in a csv format that the shopify importer understands"
