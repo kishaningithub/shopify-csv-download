@@ -83,6 +83,7 @@ type ProductsResponse struct {
 
 func (product Product) ToImportableCSV() [][]string {
 	var csvRows [][]string
+	noOfImagesInProduct := len(product.Images)
 	for _, variant := range product.Variants {
 		published := strconv.FormatBool(true)
 		variantInventoryTracker := "shopify"
@@ -100,7 +101,7 @@ func (product Product) ToImportableCSV() [][]string {
 		giftCard := strconv.FormatBool(false)
 		imageSrc := ""
 		imagePosition := ""
-		if len(product.Images) > 0 {
+		if noOfImagesInProduct > 0 {
 			imageSrc = product.Images[0].Src
 			imagePosition = strconv.Itoa(product.Images[0].Position)
 		}
@@ -136,5 +137,26 @@ func (product Product) ToImportableCSV() [][]string {
 
 		csvRows = append(csvRows, content)
 	}
+
+	if noOfImagesInProduct > 1 {
+		for i := 1; i < noOfImagesInProduct; i++ {
+			productImage := product.Images[i]
+			imageSrc := productImage.Src
+			imagePosition := strconv.Itoa(productImage.Position)
+			content := []string{
+				product.Handle, "", "", "", "",
+				"", "", "", "", "",
+				"", "", "", "", "",
+				"", "", "", "", "",
+				"", "", "", "",
+				imageSrc, imagePosition, "", "", "", "", "",
+				"", "", "", "", "",
+				"", "", "", "",
+				"", "", "", "", "",
+			}
+			csvRows = append(csvRows, content)
+		}
+	}
+
 	return csvRows
 }
