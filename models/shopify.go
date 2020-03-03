@@ -50,30 +50,19 @@ type Option struct {
 
 // Product represents a shopify product
 type Product struct {
-	ID          int64       `json:"id"`
-	Title       string      `json:"title"`
-	Handle      string      `json:"handle"`
-	BodyHTML    string      `json:"body_html"`
-	PublishedAt time.Time   `json:"published_at"`
-	CreatedAt   time.Time   `json:"created_at"`
-	UpdatedAt   time.Time   `json:"updated_at"`
-	Vendor      string      `json:"vendor"`
-	ProductType string      `json:"product_type"`
-	Tags        interface{} `json:"tags"`
-	Variants    []Variant   `json:"variants"`
-	Images      []Image     `json:"images"`
-	Options     []Option    `json:"options"`
-}
-
-// Tags is sometimes a string array and sometimes a CSV
-func (product Product) GetTags() []string {
-	if tags, ok := product.Tags.([]string); ok {
-		return tags
-	}
-	if tags, ok := product.Tags.(string); ok {
-		return strings.Split(tags, ", ") // yes there is an annoying space after the comma
-	}
-	return []string{}
+	ID          int64     `json:"id"`
+	Title       string    `json:"title"`
+	Handle      string    `json:"handle"`
+	BodyHTML    string    `json:"body_html"`
+	PublishedAt time.Time `json:"published_at"`
+	CreatedAt   time.Time `json:"created_at"`
+	UpdatedAt   time.Time `json:"updated_at"`
+	Vendor      string    `json:"vendor"`
+	ProductType string    `json:"product_type"`
+	Tags        []string  `json:"tags"`
+	Variants    []Variant `json:"variants"`
+	Images      []Image   `json:"images"`
+	Options     []Option  `json:"options"`
 }
 
 // ProductsResponse holds shopify response
@@ -125,7 +114,7 @@ func (product Product) ToImportableCSV() [][]string {
 
 		content := []string{
 			product.Handle, product.Title, product.BodyHTML, product.Vendor, product.ProductType,
-			strings.Join(product.GetTags(), ","), published, variant.Option1, variant.Option1, variant.Option2,
+			strings.Join(product.Tags, ","), published, variant.Option1, variant.Option1, variant.Option2,
 			variant.Option2, variant.Option3, variant.Option3, variant.Sku, strconv.Itoa(variant.Grams),
 			variantInventoryTracker, variantInventoryQuantity, variantInventoryPolicy, variantFulfilmentService, variant.Price,
 			variant.CompareAtPrice, strconv.FormatBool(variant.RequiresShipping), strconv.FormatBool(variant.Taxable), variantBarCode,
