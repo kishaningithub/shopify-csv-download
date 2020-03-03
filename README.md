@@ -17,6 +17,8 @@ Download a shopify site in a csv format that the shopify importer understands
     - [Using Homebrew](#using-homebrew)
     - [Using Binary](#using-binary)
   - [Usage](#usage)
+    - [CLI](#CLI)
+    - [Library](#Library)
   - [Maintainers](#maintainers)
   - [Contribute](#contribute)
   - [License](#license)
@@ -42,6 +44,8 @@ wget -O - -q https://raw.githubusercontent.com/kishaningithub/shopify-csv-downlo
 
 ## Usage
 
+### CLI
+
 Accessing publicly exposed products
 
 ```bash
@@ -52,6 +56,29 @@ Private products using API Key
 
 ```bash
 shopify-csv-download --full-url https://{{api_key}}:{{api_password}}@{{store_name}}.myshopify.com/admin/products.json > shopify-site-products.csv
+```
+
+### Library
+
+```go
+import (
+	"github.com/kishaningithub/shopify-csv-download/pkg/products"
+	"log"
+	"net/url"
+)
+
+func main() {
+	productsJsonURL, err := url.Parse("https://shopify-site.com/products.json")
+    if err != nil {
+       log.Println(err)
+       return
+    }
+	err = products.SaveAsImportableCSV(*productsJsonURL, os.Stdout)
+    if err != nil {
+       log.Println(err)
+       return
+    }
+}
 ```
 
 ## Maintainers
