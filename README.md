@@ -61,23 +61,27 @@ shopify-csv-download --full-url https://{{api_key}}:{{api_password}}@{{store_nam
 ### Library
 
 ```go
+package main
+
 import (
-	"github.com/kishaningithub/shopify-csv-download/pkg/products"
 	"log"
 	"net/url"
+	"os"
+
+	"github.com/kishaningithub/shopify-csv-download/pkg/products"
 )
 
 func main() {
 	productsJsonURL, err := url.Parse("https://shopify-site.com/products.json")
-    if err != nil {
-       log.Println(err)
-       return
-    }
+	if err != nil {
+		log.Println(err)
+		return
+	}
 	err = products.SaveAsImportableCSV(*productsJsonURL, os.Stdout)
-    if err != nil {
-       log.Println(err)
-       return
-    }
+	if err != nil {
+		log.Println(err)
+		return
+	}
 }
 ```
 
