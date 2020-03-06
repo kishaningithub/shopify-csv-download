@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -41,14 +40,22 @@ func (resource *resource) GetProducts(noOfRecordsPerPage int, page int) (Product
 		return ProductsResponse{}, fmt.Errorf("unable to form products request: %w", err)
 	} else if response, err := resource.httpClient.Do(request); err != nil {
 		return ProductsResponse{}, fmt.Errorf("unable to fetch products: %w", err)
-	} else if data, err := ioutil.ReadAll(response.Body); err != nil {
-		log.Println("shopify is blocking requests. Waiting for a couple of minutes before the next request.")
-		log.Println(err)
-		time.Sleep(2 * time.Minute)
+	} else if response.StatusCode != http.StatusOK {
+		resource.handleAPIErrorsUsingAppropriateDelays(response.StatusCode)
 		return resource.GetProducts(noOfRecordsPerPage, page)
+	} else if data, err := ioutil.ReadAll(response.Body); err != nil {
+		return ProductsResponse{}, fmt.Errorf("unable to read products response: %w", err)
 	} else if err = json.Unmarshal(data, &responseForPage); err != nil {
 		return ProductsResponse{}, fmt.Errorf("unable to parse json: %w", err)
 	} else {
 		return responseForPage, nil
+	}
+}
+
+func (resource *resource) handleAPIErrorsUsingAppropriateDelays(httpStatusCode int) {
+	if httpStatusCode >= 400 && httpStatusCode < 500 {
+		time.Sleep(2 * time.Minute) // Handle Rate Limiters
+	} else if httpStatusCode >= 500 && httpStatusCode < 600 {
+		time.Sleep(20 * time.Second) // Handle internal errors
 	}
 }
