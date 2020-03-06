@@ -23,6 +23,10 @@ func ConvertToCSVFormat(product shopify.Product) []shopify.ProductCSV {
 			imageSrc = product.Images[0].Src
 			imagePosition = strconv.Itoa(product.Images[0].Position)
 		}
+		option1Name := variant.Option1
+		if variant.Option1 == "Default Title" {
+			option1Name = "Title"
+		}
 		productsInCSV = append(productsInCSV, shopify.ProductCSV{
 			Handle:                    product.Handle,
 			Title:                     product.Title,
@@ -31,7 +35,7 @@ func ConvertToCSVFormat(product shopify.Product) []shopify.ProductCSV {
 			Type:                      product.ProductType,
 			Tags:                      strings.Join(product.Tags, ","),
 			Published:                 strconv.FormatBool(true),
-			Option1Name:               variant.Option1,
+			Option1Name:               option1Name,
 			Option1Value:              variant.Option1,
 			Option2Name:               variant.Option2,
 			Option2Value:              variant.Option2,
