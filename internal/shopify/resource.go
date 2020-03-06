@@ -24,7 +24,7 @@ func NewResource(productsResourceFullUrl url.URL) Resource {
 	return &resource{
 		productsResourceFullUrl: productsResourceFullUrl,
 		httpClient: &http.Client{
-			Timeout: time.Minute * 2,
+			Timeout: time.Minute * 1,
 		},
 	}
 }
