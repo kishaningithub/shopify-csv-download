@@ -6,7 +6,7 @@ import (
 
 // Variant represents a shopify variant
 type Variant struct {
-	ID                int64     `json:"id"`
+	ID                int       `json:"id"`
 	Title             string    `json:"title"`
 	Option1           string    `json:"option1"`
 	Option2           string    `json:"option2"`
@@ -21,19 +21,19 @@ type Variant struct {
 	Grams             int       `json:"grams"`
 	CompareAtPrice    string    `json:"compare_at_price"`
 	Position          int       `json:"position"`
-	ProductID         int64     `json:"product_id"`
+	ProductID         int       `json:"product_id"`
 	CreatedAt         time.Time `json:"created_at"`
 	UpdatedAt         time.Time `json:"updated_at"`
 }
 
 // Image represents a shopify image
 type Image struct {
-	ID         int64     `json:"id"`
+	ID         int       `json:"id"`
 	CreatedAt  time.Time `json:"created_at"`
 	Position   int       `json:"position"`
 	UpdatedAt  time.Time `json:"updated_at"`
-	ProductID  int64     `json:"product_id"`
-	VariantIds []int64   `json:"variant_ids"`
+	ProductID  int       `json:"product_id"`
+	VariantIds []int     `json:"variant_ids"`
 	Src        string    `json:"src"`
 	Width      int       `json:"width"`
 	Height     int       `json:"height"`
@@ -48,7 +48,7 @@ type Option struct {
 
 // Product represents a shopify product
 type Product struct {
-	ID          int64     `json:"id"`
+	ID          int       `json:"id"`
 	Title       string    `json:"title"`
 	Handle      string    `json:"handle"`
 	BodyHTML    string    `json:"body_html"`

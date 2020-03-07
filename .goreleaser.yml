@@ -18,7 +18,6 @@ builds:
   - linux
   goarch:
   - amd64
-  - 386
 
 brews:
   - name: shopify-csv-download
