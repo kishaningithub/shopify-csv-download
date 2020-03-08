@@ -17,8 +17,8 @@ func SaveAsImportableCSV(productsJsonURL url.URL, out io.Writer) error {
 	return <-err
 }
 
-// SaveAsImportableCSVWithProgressState saves products from the given url to given writer and returns the progress state using channels
-func SaveAsImportableCSVWithProgressState(productsJsonURL url.URL, out io.Writer, onProgressHandler ProgressHandler) error {
+// SaveAsImportableCSVNotifyingProgressState saves products from the given url to given writer and notifies the progress state
+func SaveAsImportableCSVNotifyingProgressState(productsJsonURL url.URL, out io.Writer, onProgressHandler ProgressHandler) error {
 	progressState, err := products.
 		Stream(productsJsonURL).
 		ConvertToCSV().

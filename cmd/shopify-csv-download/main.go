@@ -19,7 +19,7 @@ func main() {
 	exitOnFailure(fmt.Sprintf("unable to parse url %s", productsJsonURL), err)
 	logWithNewLine("Downloading products as CSV...")
 	watch := stopwatch.Start()
-	err = products.SaveAsImportableCSVWithProgressState(*productsJsonURL, os.Stdout, progressHandler)
+	err = products.SaveAsImportableCSVNotifyingProgressState(*productsJsonURL, os.Stdout, progressHandler)
 	exitOnFailure("unable to write products", err)
 	logWithNewLine("")
 	watch.Stop()
