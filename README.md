@@ -4,8 +4,8 @@
 [![Go Doc](https://godoc.org/github.com/kishaningithub/shopify-csv-download?status.svg)](https://godoc.org/github.com/kishaningithub/shopify-csv-download)
 [![Go Report Card](https://goreportcard.com/badge/github.com/kishaningithub/shopify-csv-download)](https://goreportcard.com/report/github.com/kishaningithub/shopify-csv-download)
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-[![Downloads](https://img.shields.io/github/downloads/kishaningithub/shopify-csv-download/latest/total.svg)](https://github.com/kishaningithub/shopify-csv-download/releases)
 [![Latest release](https://img.shields.io/github/release/kishaningithub/shopify-csv-download.svg)](https://github.com/kishaningithub/shopify-csv-download/releases)
+[![Buy me a lunch](https://img.shields.io/badge/🍱-Buy%20me%20a%20lunch-blue.svg)](https://www.paypal.me/kishansh/15)
 
 Download a shopify site in a csv format that the shopify importer understands
 
