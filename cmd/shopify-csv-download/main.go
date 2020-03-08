@@ -27,8 +27,8 @@ func main() {
 }
 
 func progressHandler(state products.ProgressState) {
-	progressStateLineFormat := "Products downloaded: %d Products converted as CSV: %d"
-	logInTheSameLine(progressStateLineFormat, state.NoOfProductsDownloaded, state.NoOfProductsConvertedAsCSV)
+	progressStateLineFormat := "%d products downloaded..."
+	logInTheSameLine(progressStateLineFormat, state.NoOfProductsConvertedAsCSV)
 }
 
 func logWithNewLine(format string, args ...interface{}) {
