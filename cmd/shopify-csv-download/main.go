@@ -19,15 +19,25 @@ func main() {
 	exitOnFailure(fmt.Sprintf("unable to parse url %s", productsJsonURL), err)
 	logWithNewLine("Downloading products as CSV...")
 	watch := stopwatch.Start()
-	err = products.SaveAsImportableCSV(*productsJsonURL, os.Stdout)
+	err = products.SaveAsImportableCSVWithProgressState(*productsJsonURL, os.Stdout, progressHandler)
 	exitOnFailure("unable to write products", err)
+	logWithNewLine("")
 	watch.Stop()
 	logWithNewLine("Save complete. Time taken %s", watch.String())
+}
+
+func progressHandler(state products.ProgressState) {
+	progressStateLineFormat := "Products downloaded: %d Products converted as CSV: %d"
+	logInTheSameLine(progressStateLineFormat, state.NoOfProductsDownloaded, state.NoOfProductsConvertedAsCSV)
 }
 
 func logWithNewLine(format string, args ...interface{}) {
 	_, _ = fmt.Fprintf(os.Stderr, format, args...)
 	_, _ = fmt.Fprintln(os.Stderr)
+}
+
+func logInTheSameLine(format string, args ...interface{}) {
+	_, _ = fmt.Fprintf(os.Stderr, "\r"+format, args...)
 }
 
 func findProductsJsonURL() string {
