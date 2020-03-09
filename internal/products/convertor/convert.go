@@ -14,9 +14,6 @@ func ConvertToCSVFormat(product shopify.Product) []shopify.ProductCSV {
 		if variant.Available {
 			variantInventoryQuantity = "1"
 		}
-		if variant.InventoryQuantity != nil {
-			variantInventoryQuantity = strconv.Itoa(*variant.InventoryQuantity)
-		}
 		imageSrc := ""
 		imagePosition := ""
 		if noOfImagesInProduct > 0 {

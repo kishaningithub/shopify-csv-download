@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"path"
 	"strconv"
 	"time"
 )
@@ -15,13 +16,13 @@ type Resource interface {
 }
 
 type resource struct {
-	productsResourceFullUrl url.URL
-	httpClient              *http.Client
+	storeUrl   url.URL
+	httpClient *http.Client
 }
 
-func NewResource(productsResourceFullUrl url.URL) Resource {
+func NewResource(storeUrl url.URL) Resource {
 	return &resource{
-		productsResourceFullUrl: productsResourceFullUrl,
+		storeUrl: storeUrl,
 		httpClient: &http.Client{
 			Timeout: time.Minute * 1,
 		},
@@ -29,12 +30,14 @@ func NewResource(productsResourceFullUrl url.URL) Resource {
 }
 
 func (resource *resource) GetProducts(noOfRecordsPerPage int, page int) (ProductsResponse, error) {
-	productsResourceFullUrl := resource.productsResourceFullUrl
-	queryParams := productsResourceFullUrl.Query()
+	productsJsonUrl := resource.storeUrl
+	productsJsonUrl.Path = path.Join(resource.storeUrl.Path, "products.json")
+	queryParams := productsJsonUrl.Query()
 	queryParams.Set("limit", strconv.Itoa(noOfRecordsPerPage))
 	queryParams.Set("page", strconv.Itoa(page))
-	productsResourceFullUrl.RawQuery = queryParams.Encode()
-	request, err := http.NewRequest(http.MethodGet, productsResourceFullUrl.String(), nil)
+	productsJsonUrl.RawQuery = queryParams.Encode()
+	urlWithQueryParams := productsJsonUrl.String()
+	request, err := http.NewRequest(http.MethodGet, urlWithQueryParams, nil)
 	var responseForPage ProductsResponse
 	if err != nil {
 		return ProductsResponse{}, fmt.Errorf("unable to form products request: %w", err)

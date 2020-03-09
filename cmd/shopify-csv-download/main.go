@@ -11,11 +11,10 @@ import (
 )
 
 var opts struct {
-	FullUrl string `short:"f" long:"full-url" description:"Full URL to products.json. Eg: https://shopify-site.com/products.json"`
 }
 
 func main() {
-	productsJsonURL, err := url.Parse(findProductsJsonURL())
+	productsJsonURL, err := url.Parse(parseArgsAndGetStoreUrl())
 	exitOnFailure(fmt.Sprintf("unable to parse url %s", productsJsonURL), err)
 	logWithNewLine("Downloading products as CSV...")
 	watch := stopwatch.Start()
@@ -40,16 +39,11 @@ func logInTheSameLine(format string, args ...interface{}) {
 	_, _ = fmt.Fprintf(os.Stderr, "\r"+format, args...)
 }
 
-func findProductsJsonURL() string {
+func parseArgsAndGetStoreUrl() string {
 	remainingArgs, err := flags.Parse(&opts)
 	exitOnFailure("unable to parse flags", err)
 	baseURL := strings.Join(remainingArgs, "")
-	productsJsonURL := fmt.Sprintf("%s/products.json", baseURL)
-	if len(opts.FullUrl) > 0 {
-		productsJsonURL = opts.FullUrl
-	}
-	logWithNewLine("Products URL is %s", productsJsonURL)
-	return productsJsonURL
+	return baseURL
 }
 
 func exitOnFailure(message string, err error) {

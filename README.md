@@ -46,16 +46,10 @@ wget -O - -q https://raw.githubusercontent.com/kishaningithub/shopify-csv-downlo
 
 ### CLI
 
-Accessing publicly exposed products
+Retrieving all publicly exposed products
 
 ```bash
 shopify-csv-download https://shopify-site.com > shopify-site-products.csv
-```
-
-Private products using API Key
-
-```bash
-shopify-csv-download --full-url https://{{api_key}}:{{api_password}}@{{store_name}}.myshopify.com/admin/products.json > shopify-site-products.csv
 ```
 
 ### Library
@@ -72,12 +66,12 @@ import (
 )
 
 func main() {
-	productsJsonURL, err := url.Parse("https://shopify-site.com/products.json")
+	siteUrl, err := url.Parse("https://shopify-site.com")
 	if err != nil {
 		log.Println(err)
 		return
 	}
-	err = products.SaveAsImportableCSV(*productsJsonURL, os.Stdout)
+	err = products.SaveAsImportableCSV(*siteUrl, os.Stdout)
 	if err != nil {
 		log.Println(err)
 		return

@@ -23,7 +23,7 @@ func TestResourceTestSuite(t *testing.T) {
 }
 
 func (suite *ResourceTestSuite) SetupTest() {
-	productsJsonUrl, _ := url.Parse("https://example.com/products.json")
+	productsJsonUrl, _ := url.Parse("https://example.com")
 	suite.productsJsonUrl = *productsJsonUrl
 	suite.resource = shopify.NewResource(suite.productsJsonUrl)
 	httpmock.Activate()
@@ -34,7 +34,7 @@ func (suite *ResourceTestSuite) TearDownTest() {
 }
 
 func (suite *ResourceTestSuite) TestGetProducts_ShouldFetchProductsAsPerGivenCriteria() {
-	httpmock.RegisterResponder("GET", suite.productsJsonUrl.String(),
+	httpmock.RegisterResponder("GET", "https://example.com/products.json?limit=1&page=1",
 		httpmock.NewStringResponder(200, `
 {
   "products": [
