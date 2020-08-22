@@ -5,6 +5,7 @@ import (
 	"github.com/bradhe/stopwatch"
 	"github.com/jessevdk/go-flags"
 	"github.com/kishaningithub/shopify-csv-download/pkg/products"
+	"github.com/kishaningithub/shopify-csv-download/pkg/progress"
 	"net/url"
 	"os"
 	"strings"
@@ -25,9 +26,9 @@ func main() {
 	logWithNewLine("Save complete. Time taken %s", watch.String())
 }
 
-func progressHandler(state products.ProgressState) {
-	progressStateLineFormat := "%d products downloaded..."
-	logInTheSameLine(progressStateLineFormat, state.NoOfProductsConvertedAsCSV)
+func progressHandler(state progress.State) {
+	progressStateLineFormat := "%d products downloaded... %d products written in CSV..."
+	logInTheSameLine(progressStateLineFormat, state.NoOfProductsDownloaded, state.NoOfProductsConvertedAsCSV)
 }
 
 func logWithNewLine(format string, args ...interface{}) {

@@ -7,5 +7,6 @@ require (
 	github.com/gocarina/gocsv v0.0.0-20200302151839-87c60d755c58
 	github.com/jarcoal/httpmock v1.0.4
 	github.com/jessevdk/go-flags v1.4.0
-	github.com/stretchr/testify v1.5.1
+	github.com/stretchr/testify v1.6.1
+	golang.org/x/sync v0.0.0-20200625203802-6e8e738ad208
 )
