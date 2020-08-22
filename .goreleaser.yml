@@ -21,7 +21,7 @@ builds:
 
 brews:
   - name: shopify-csv-download
-    github:
+    tap:
       owner: kishaningithub
       name: homebrew-tap
     url_template: "https://github.com/kishaningithub/shopify-csv-download/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
