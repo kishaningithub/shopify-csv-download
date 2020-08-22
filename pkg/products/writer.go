@@ -1,60 +1,31 @@
 package products
 
 import (
-	"github.com/kishaningithub/shopify-csv-download/internal/products"
-	"github.com/kishaningithub/shopify-csv-download/internal/products/stream"
+	"fmt"
+	"github.com/kishaningithub/shopify-csv-download/internal/dependency_injection"
+	"github.com/kishaningithub/shopify-csv-download/pkg/progress"
 	"io"
 	"net/url"
 )
 
 // SaveAsImportableCSV saves products from the given url to given writer
-func SaveAsImportableCSV(productsJsonURL url.URL, out io.Writer) error {
-	progressState, err := products.
-		Stream(productsJsonURL).
-		ConvertToCSV().
-		Save(out)
-	progressState.Ignore()
-	return <-err
+func SaveAsImportableCSV(shopifyStoreUrlString string, out io.Writer) error {
+	shopifyStoreUrl, err := url.ParseRequestURI(shopifyStoreUrlString)
+	if err != nil {
+		return fmt.Errorf("invalid url %s: %w", shopifyStoreUrlString, err)
+	}
+	productCSVWriter := dependency_injection.ConstructRequiredObjects(*shopifyStoreUrl).ProductsCSVWriterService
+	return productCSVWriter.DownloadAllProducts(out)
 }
 
 // SaveAsImportableCSVNotifyingProgressState saves products from the given url to given writer and notifies the progress state
-func SaveAsImportableCSVNotifyingProgressState(productsJsonURL url.URL, out io.Writer, onProgressHandler ProgressHandler) error {
-	progressState, err := products.
-		Stream(productsJsonURL).
-		ConvertToCSV().
-		Save(out)
-	onProgressChange(progressState, onProgressHandler)
-	return <-err
-}
-
-func onProgressChange(progress stream.ProgressState, onProgressHandler ProgressHandler) {
-	noOfProductsConvertedAsCSV := 0
-	noOfProductsDownloaded := 0
-	isNoOfProductsChannelOpen := false
-	isNoOfProductsConvertedAsCSVChannelOpen := false
-	for {
-		select {
-		case noOfProductsDownloaded, isNoOfProductsChannelOpen = <-progress.NoOfProductsDownloaded:
-			if !isNoOfProductsChannelOpen {
-				progress.NoOfProductsDownloaded = nil
-				break
-			}
-			onProgressHandler(ProgressState{
-				NoOfProductsDownloaded:     noOfProductsDownloaded,
-				NoOfProductsConvertedAsCSV: noOfProductsConvertedAsCSV,
-			})
-		case noOfProductsConvertedAsCSV, isNoOfProductsConvertedAsCSVChannelOpen = <-progress.NoOfProductsConvertedAsCSV:
-			if !isNoOfProductsConvertedAsCSVChannelOpen {
-				progress.NoOfProductsConvertedAsCSV = nil
-				break
-			}
-			onProgressHandler(ProgressState{
-				NoOfProductsDownloaded:     noOfProductsDownloaded,
-				NoOfProductsConvertedAsCSV: noOfProductsConvertedAsCSV,
-			})
+func SaveAsImportableCSVNotifyingProgressState(shopifyStoreUrl url.URL, out io.Writer, onProgressHandler progress.Handler) error {
+	progressStates := make(chan progress.State, 1000)
+	go func() {
+		for progressState := range progressStates {
+			onProgressHandler(progressState)
 		}
-		if progress.NoOfProductsDownloaded == nil && progress.NoOfProductsConvertedAsCSV == nil {
-			break
-		}
-	}
+	}()
+	productCSVWriter := dependency_injection.ConstructRequiredObjects(shopifyStoreUrl).ProductsCSVWriterService
+	return productCSVWriter.DownloadAllProductsUpdatingProgressState(out, progressStates)
 }

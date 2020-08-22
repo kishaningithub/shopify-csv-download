@@ -1,12 +1,24 @@
-package convertor
+package services
 
 import (
-	"github.com/kishaningithub/shopify-csv-download/internal/shopify"
+	"github.com/kishaningithub/shopify-csv-download/internal/models/shopify"
 	"strconv"
 	"strings"
 )
 
-func ConvertToCSVFormat(product shopify.Product) []shopify.ProductCSV {
+type ProductCSVConversionService interface {
+	ConvertToCSVFormat(product shopify.Product) []shopify.ProductCSV
+}
+
+type productCSVConversionService struct {
+}
+
+func NewProductCSVConversionService() ProductCSVConversionService {
+	return &productCSVConversionService{
+	}
+}
+
+func (service *productCSVConversionService) ConvertToCSVFormat(product shopify.Product) []shopify.ProductCSV {
 	var productsInCSV []shopify.ProductCSV
 	noOfImagesInProduct := len(product.Images)
 	for _, variant := range product.Variants {

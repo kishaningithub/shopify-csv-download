@@ -1,8 +1,9 @@
-package shopify_test
+package resources_test
 
 import (
 	"github.com/jarcoal/httpmock"
-	"github.com/kishaningithub/shopify-csv-download/internal/shopify"
+	"github.com/kishaningithub/shopify-csv-download/internal/models/shopify"
+	"github.com/kishaningithub/shopify-csv-download/internal/resources"
 	"github.com/stretchr/testify/suite"
 	"net/url"
 	"testing"
@@ -15,7 +16,7 @@ var _ suite.TearDownTestSuite = &ResourceTestSuite{}
 type ResourceTestSuite struct {
 	suite.Suite
 	productsJsonUrl url.URL
-	resource        shopify.Resource
+	resource        resources.ShopifyResource
 }
 
 func TestResourceTestSuite(t *testing.T) {
@@ -25,7 +26,7 @@ func TestResourceTestSuite(t *testing.T) {
 func (suite *ResourceTestSuite) SetupTest() {
 	productsJsonUrl, _ := url.Parse("https://example.com")
 	suite.productsJsonUrl = *productsJsonUrl
-	suite.resource = shopify.NewResource(suite.productsJsonUrl)
+	suite.resource = resources.NewShopifyResource(suite.productsJsonUrl)
 	httpmock.Activate()
 }
 
