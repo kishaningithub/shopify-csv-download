@@ -48,7 +48,7 @@ func (resource *shopifyResource) GetProducts(noOfRecordsPerPage int, page int) (
 		return shopify.ProductsResponse{}, fmt.Errorf("unable to fetch products: %w", err)
 	}
 	if response.StatusCode == http.StatusNotFound {
-		return shopify.ProductsResponse{}, fmt.Errorf("the url %s is not found. This could be because the site is either not built using shopify or the site has not exposed the url", urlWithQueryParams)
+		return shopify.ProductsResponse{}, fmt.Errorf("the url %s is not found, this could be because the site is either not built using shopify or the site has not exposed the url", urlWithQueryParams)
 	}
 	if response.StatusCode != http.StatusOK {
 		resource.handleAPIErrorsUsingAppropriateDelays(response.StatusCode)
@@ -68,7 +68,7 @@ func (resource *shopifyResource) handleAPIErrorsUsingAppropriateDelays(httpStatu
 	if resource.is4XXResponseCode(httpStatusCode) {
 		time.Sleep(2 * time.Minute) // Handle Rate Limiters
 	} else if resource.is5XXResponseCode(httpStatusCode) {
-		time.Sleep(20 * time.Second) // Handle internal errors
+		time.Sleep(20 * time.Second) // Handle internal server errors
 	}
 }
 
