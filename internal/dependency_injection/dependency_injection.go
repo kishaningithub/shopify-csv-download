@@ -10,7 +10,7 @@ type RequiredObjects struct {
 	ProductsCSVWriterService services.ProductsCSVWriterService
 }
 
-func ConstructRequiredObjects(shopifyStoreUrl url.URL) RequiredObjects{
+func ConstructRequiredObjects(shopifyStoreUrl url.URL) RequiredObjects {
 	productCSVConversionService := services.NewProductCSVConversionService()
 	shopifyResource := resources.NewShopifyResource(shopifyStoreUrl)
 	productsRetrievalService := services.NewProductsRetrievalService(shopifyResource)

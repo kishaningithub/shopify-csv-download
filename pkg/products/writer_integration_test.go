@@ -10,10 +10,9 @@ import (
 )
 
 var (
-	_ suite.SetupTestSuite = (*WriterTestSuite)(nil)
+	_ suite.SetupTestSuite    = (*WriterTestSuite)(nil)
 	_ suite.TearDownTestSuite = (*WriterTestSuite)(nil)
 )
-
 
 type WriterTestSuite struct {
 	suite.Suite

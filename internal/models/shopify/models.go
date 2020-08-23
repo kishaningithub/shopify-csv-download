@@ -14,6 +14,7 @@ type Variant struct {
 	Sku              string    `json:"sku"`
 	RequiresShipping bool      `json:"requires_shipping"`
 	Taxable          bool      `json:"taxable"`
+	Barcode          string    `json:"barcode"`
 	FeaturedImage    Image     `json:"featured_image"`
 	Available        bool      `json:"available"`
 	Price            string    `json:"price"`
