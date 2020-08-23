@@ -7,7 +7,7 @@
 [![Latest release](https://img.shields.io/github/release/kishaningithub/shopify-csv-download.svg)](https://github.com/kishaningithub/shopify-csv-download/releases)
 [![Buy me a lunch](https://img.shields.io/badge/🍱-Buy%20me%20a%20lunch-blue.svg)](https://www.paypal.me/kishansh/15)
 
-Download a shopify site in a csv format that the shopify importer understands
+Download a shopify site in a csv format that the [shopify importer understands](https://help.shopify.com/en/manual/products/import-export/using-csv#product-csv-file-format)
 
 ## Table of Contents
 
