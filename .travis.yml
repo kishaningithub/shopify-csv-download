@@ -1,7 +1,7 @@
 sudo: false
 language: go
 go:
-- 1.15
+- 1.16
 install:
 - go mod download
 - curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | sh
