@@ -9,4 +9,5 @@ script:
 - go test -v ./...
 - ./bin/goreleaser check
 after_success:
+- test -n "$TRAVIS_TAG" && go mod tidy
 - test -n "$TRAVIS_TAG" && curl -sL https://git.io/goreleaser | bash
