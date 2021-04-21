@@ -52,7 +52,7 @@ func (service *productCSVConversionService) getProductCSVForVariant(product shop
 		Type:                      product.ProductType,
 		Tags:                      strings.Join(product.Tags, ","),
 		Published:                 strings.ToUpper(strconv.FormatBool(true)),
-		Option1Name:               service.getOption1Name(product, variant),
+		Option1Name:               service.getOption1Name(product),
 		Option1Value:              variant.Option1,
 		Option2Name:               service.getOption2Name(product, variant),
 		Option2Value:              variant.Option2,
@@ -73,7 +73,7 @@ func (service *productCSVConversionService) getProductCSVForVariant(product shop
 	}
 }
 
-func (service *productCSVConversionService) getOption1Name(product shopify.Product, variant shopify.Variant) string {
+func (service *productCSVConversionService) getOption1Name(product shopify.Product) string {
 	return product.Options[0].Name
 }
 
