@@ -28,8 +28,7 @@ Download a shopify site in a csv format that the [shopify importer understands](
 ### Using Homebrew
 
 ```bash
-brew tap kishaningithub/tap
-brew install shopify-csv-download
+brew install kishaningithub/tap/shopify-csv-download
 ```
 
 ### Using Binary
