@@ -1,6 +1,6 @@
 # shopify csv download
 
-[![Build Status](https://github.com/kishaningithub/kafka-perf/actions/workflows/build.yml/badge.svg)](https://github.com/kishaningithub/shopify-csv-download/actions/workflows/build.yml)
+[![Build Status](https://github.com/kishaningithub/shopify-csv-download/actions/workflows/build.yml/badge.svg)](https://github.com/kishaningithub/shopify-csv-download/actions/workflows/build.yml)
 [![Go Doc](https://godoc.org/github.com/kishaningithub/shopify-csv-download?status.svg)](https://godoc.org/github.com/kishaningithub/shopify-csv-download)
 [![Go Report Card](https://goreportcard.com/badge/github.com/kishaningithub/shopify-csv-download)](https://goreportcard.com/report/github.com/kishaningithub/shopify-csv-download)
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)

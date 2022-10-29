@@ -12,6 +12,7 @@
 *.out
 
 .idea/*
+.vscode/*
 *.csv*
 bin/*
 shopify-csv-download
